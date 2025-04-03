@@ -4,3 +4,27 @@ The Vault is a smart safe system integrating a dual-layered authentication mecha
 ## System Overview
 The user initiates authentication by tapping their RFID card on a reader. The Arduino Uno verifies the tag using SPI communication with the RC522 module. If the RFID is valid, the Raspberry Pi triggers a camera to capture the user’s face. Facial recognition is performed and the result is sent back to the Arduino via UART over USB Serial (CDC ACM). If both steps succeed, the Arduino unlocks the safe using a servo motor and logs the access event with audio-visual feedback.
 ## Components Used
+- Arduino Uno – Handles RFID scanning, servo control, and communication with Raspberry Pi
+- Raspberry Pi 4 – Captures and processes facial recognition via a camera module
+- RC522 RFID Module – Reads RFID tags (communicates with Arduino via SPI)
+- Raspberry Pi Camera V3 – Captures facial image for comparison
+- 7" HDMI Display – Provides visual feedback (e.g., "Access Denied")
+- Servo Motor – Operates the locking mechanism
+- Piezo Buzzer – Provides sound alerts for success/failure
+- Power Supply – 6V for servo + 5V for logic
+- Custom 3D-Printed Safe Enclosure
+## Key Features
+- **Dual-Layer Security**: Combines RFID card identification and real-time facial recognition for robust access control.
+- **Real-Time Feedback**:
+  - Buzzer alerts signal authentication success or failure.
+  - Screen messages indicate stages like “Access Denied” or “Access Granted”
+- **Custom 3D Safe** : A fully designed, printed, and assembled physical housing secures the internal electronics and valuables.
+- **SPI Communication** : The RC522 RFID module interfaces with the Arduino Uno via the SPI protocol, enabling fast and secure transmission of card UID data for authentication.
+- **Modular Electronics** : Raspberry Pi handles facial recognition; Arduino controls servo and RFID. The two communicate via UART for seamless coordination.
+- **Image Logging & Access History** : The system logs access attempts with timestamps and identification results for future auditability.
+## Working Pattern
+- **System Boot** : Initializes all components including RFID, camera, and display
+- **RFID Authentication** :User taps RFID card, Arduino verifies UID via SPI, Sends result over UART to Raspberry Pi
+- **Facial Recognition** : Raspberry Pi captures face via CSI camera, Compares against stored images using OpenCV SDK, Sends 'R' to Arduino via serial if access is granted.
+- **Unlocking** : Arduino receives 'R' and rotates servo to unlock safe, Logs the event and provides audio-visual feedback.
+  
