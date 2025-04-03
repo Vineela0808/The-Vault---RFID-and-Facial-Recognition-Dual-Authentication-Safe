@@ -1,1 +1,6 @@
 # The-Vault---RFID-and-Facial-Recognition-Dual-Authentication-Safe
+## Abstract
+The Vault is a smart safe system integrating a dual-layered authentication mechanism that combines RFID verification and facial recognition to maximize security. Designed for high-security applications, the system ensures that only authorized users can access the contents of the safe. The process begins with RFID-based identification followed by facial verification using a camera and Raspberry Pi. A custom 3D-printed safe, secured with a servo-based locking mechanism, completes the hardware interface. With visual and auditory feedback at every step, this project offers a modern, efficient, and intuitive approach to securing physical assets.
+## System Overview
+The user initiates authentication by tapping their RFID card on a reader. The Arduino Uno verifies the tag using SPI communication with the RC522 module. If the RFID is valid, the Raspberry Pi triggers a camera to capture the user’s face. Facial recognition is performed and the result is sent back to the Arduino via UART over USB Serial (CDC ACM). If both steps succeed, the Arduino unlocks the safe using a servo motor and logs the access event with audio-visual feedback.
+## Components Used
