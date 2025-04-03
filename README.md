@@ -24,7 +24,7 @@ The user initiates authentication by tapping their RFID card on a reader. The Ar
 - **Image Logging & Access History** : The system logs access attempts with timestamps and identification results for future auditability.
 ## Working Pattern
 - **System Boot** : Initializes all components including RFID, camera, and display
-- **RFID Authentication** :User taps RFID card, Arduino verifies UID via SPI, Sends result over UART to Raspberry Pi
-- **Facial Recognition** : Raspberry Pi captures face via CSI camera, Compares against stored images using OpenCV SDK, Sends 'R' to Arduino via serial if access is granted.
-- **Unlocking** : Arduino receives 'R' and rotates servo to unlock safe, Logs the event and provides audio-visual feedback.
+- **RFID Authentication** :The user taps their RFID card. The Arduino reads the card’s UID via SPI, verifies it, and transmits the authentication result to the Raspberry Pi via UART.
+- **Facial Recognition** : Upon receiving a valid RFID result, the Raspberry Pi captures the user's face using a CSI camera. It then compares the captured image with stored images using the OpenCV SDK. If a match is found, it sends an 'R' signal back to the Arduino via serial communication.
+- **Unlocking Mechanism** : Upon receiving the 'R' signal, the Arduino activates the servo motor to unlock the safe. The system logs the event and provides both audio and visual feedback to confirm successful access.
   
